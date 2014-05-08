@@ -23,10 +23,14 @@
 #define USB_CHARGER_C	0x0B
 #define BK_BAT_V	0x0C
 #define DIE_TEMP	0x0D
+#define USB_ID		0x0E
 
 struct ab8500_gpadc;
 
-struct ab8500_gpadc *ab8500_gpadc_get(char *name);
-int ab8500_gpadc_convert(struct ab8500_gpadc *gpadc, u8 input);
+struct ab8500_gpadc *ab8500_gpadc_get(void);
+int ab8500_gpadc_convert(struct ab8500_gpadc *gpadc, u8 channel);
+int ab8500_gpadc_read_raw(struct ab8500_gpadc *gpadc, u8 channel);
+int ab8500_gpadc_ad_to_voltage(struct ab8500_gpadc *gpadc,
+	u8 channel, int ad_value);
 
 #endif /* _AB8500_GPADC_H */
